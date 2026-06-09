@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F6F9FC;
+  --color-card: #FFFFFF;
+  --color-primary: #16C172;
+  --color-primary-dark: #0FA15E;
+  --color-secondary: #14B8A6;
+  --color-accent: #3B82F6;
+  --color-text: #0B1220;
+  --color-muted: #64748B;
+  --color-border: #E8EDF3;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.04);
+  --shadow-card: 0 1px 3px rgba(16, 24, 40, 0.05), 0 12px 32px -8px rgba(16, 24, 40, 0.08);
+  --shadow-glow: 0 8px 32px -8px rgba(22, 193, 114, 0.35);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text font-sans antialiased;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(22, 193, 114, 0.18);
+  }
+}
+
+@layer utilities {
+  /* Gradient text that actually clips correctly */
+  .text-gradient {
+    background-image: linear-gradient(120deg, #16C172 0%, #14B8A6 45%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #16C172 0%, #14B8A6 100%);
+  }
+
+  .gradient-mesh {
+    background-color: #F6F9FC;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(22, 193, 114, 0.16) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.14) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(20, 184, 166, 0.12) 0px, transparent 50%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 25%, #F0F9FF 60%, #F6F9FC 100%);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+
+  /* Subtle dotted grid texture */
+  .bg-dots {
+    background-image: radial-gradient(rgba(11, 18, 32, 0.05) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 3px;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(3deg); }
+  }
+  .animate-float { animation: float 7s ease-in-out infinite; }
+  .animate-float-slow { animation: float 11s ease-in-out infinite; }
+
+  @keyframes blob {
+    0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+    50% { border-radius: 58% 42% 37% 63% / 56% 59% 41% 44%; }
+  }
+  .animate-blob { animation: blob 12s ease-in-out infinite; }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 8s linear infinite;
+  }
+}
