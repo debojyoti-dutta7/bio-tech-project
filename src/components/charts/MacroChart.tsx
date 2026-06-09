@@ -26,7 +26,7 @@ export function MacroChart({ protein, carbs, fats }: MacroChartProps) {
             border: '1px solid #E2E8F0',
             boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
           }}
-          formatter={(value: number) => [`${value}g`, 'Amount']}
+          formatter={(value) => [`${value}g`, 'Amount']}
         />
         <Bar dataKey="value" radius={[8, 8, 0, 0]}>
           {data.map((_, i) => (

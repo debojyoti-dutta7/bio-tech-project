@@ -26,11 +26,11 @@ import { formatLabel } from '../utils/format';
 import { images } from '../assets/images';
 import type { AnalysisResult } from '../types';
 
-const mealIcons = { breakfast: Sun, lunch: Coffee, dinner: Moon };
+type SavedAnalysis = AnalysisResult & { id?: string };
 
 export function DietPlansPage() {
   const analyses = getAnalyses();
-  const [selected, setSelected] = useState<AnalysisResult | null>(analyses[0] || null);
+  const [selected, setSelected] = useState<SavedAnalysis | null>(analyses[0] || null);
 
   if (!selected) {
     return (
