@@ -1,4 +1,5 @@
 import type { AnalysisResult, ChatMessage, UserProfile } from '../types';
+import { uuid } from './uuid';
 
 const KEYS = {
   ANALYSES: 'bioguide_analyses',
@@ -8,7 +9,7 @@ const KEYS = {
 
 export function saveAnalysis(result: AnalysisResult): void {
   const analyses = getAnalyses();
-  analyses.unshift({ ...result, id: crypto.randomUUID() });
+  analyses.unshift({ ...result, id: uuid() });
   localStorage.setItem(KEYS.ANALYSES, JSON.stringify(analyses.slice(0, 20)));
 }
 

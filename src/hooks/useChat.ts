@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { sendChatMessage } from '../services/api';
 import { getChatHistory, saveChatHistory, clearChatHistory as clearStorage } from '../utils/storage';
 import { getProfile } from '../utils/storage';
+import { uuid } from '../utils/uuid';
 import type { ChatMessage } from '../types';
 
 export function useChat() {
@@ -15,7 +16,7 @@ export function useChat() {
 
   const sendMessage = useCallback(async (content: string) => {
     const userMsg: ChatMessage = {
-      id: crypto.randomUUID(),
+      id: uuid(),
       role: 'user',
       content,
       timestamp: new Date().toISOString(),
@@ -30,7 +31,7 @@ export function useChat() {
       const profile = getProfile();
       const response = await sendChatMessage(content, messages, profile);
       const assistantMsg: ChatMessage = {
-        id: crypto.randomUUID(),
+        id: uuid(),
         role: 'assistant',
         content: response.message,
         timestamp: response.timestamp,
